@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUDHANSHU KUMAR</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #b88b4c;
+      background: linear-gradient(135deg, #2e0a70 0%, #020e23 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      background: rgba(26, 22, 68, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    header .logo {
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      cursor: default;
+      color: #1dc558;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #f5a623;
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover, nav a.active {
+      color: #f5a623;
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+
+    main {
+      margin-top: 80px;
+      flex-grow: 1;
+    }
+
+    section {
+      padding: 60px 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Hero Section */
+    #home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    #home h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+
+    #home p {
+      font-size: 1.3rem;
+      color: #ddd;
+      max-width: 600px;
+      margin-bottom: 35px;
+      line-height: 1.5;
+    }
+
+    #home .btn-primary {
+      background: #f5a623;
+      color: #260f00;
+      font-weight: 700;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(245, 166, 35, 0.7);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    #home .btn-primary:hover {
+      background: #d48806;
+      box-shadow: 0 8px 20px rgba(212, 136, 6, 0.8);
+      transform: translateY(-3px);
+    }
+
+    /* About Section */
+    #about {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(25, 8, 150, 0.4);
+      color: #fafafa;
+      line-height: 1.6;
+    }
+
+    #about h2 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: #f5a623;
+    }
+
+    #about p {
+      font-size: 1.1rem;
+      max-width: 800px;
+    }
+
+    /* Skills Section */
+    #skills h2 {
+      font-size: 2.4rem;
+      margin-bottom: 35px;
+      text-align: center;
+      color: #f5a623;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .skill {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px 30px;
+      min-width: 140px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+      user-select: none;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .skill:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(245, 166, 35, 0.7);
+    }
+
+    /* Projects Section */
+    #projects h2 {
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #f5a623;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(25, 8, 150, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 48px rgba(245, 166, 35, 0.6);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 20px 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-content h3 {
+      margin-bottom: 12px;
+      color: #f5a623;
+    }
+
+    .project-content p {
+      flex-grow: 1;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #eee;
+    }
+
+    .project-links {
+      margin-top: 15px;
+    }
+
+    .project-links a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #f5a623;
+      font-weight: 600;
+      border: 2px solid #f5a623;
+      padding: 6px 14px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .project-links a:hover {
+      background-color: #f5a623;
+      color: #260f00;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(25, 8, 150, 0.4);
+      padding-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2.4rem;
+      margin-bottom: 25px;
+      color: #f5a623;
+    }
+
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #contact input,
+    #contact textarea {
+      border: none;
+      border-radius: 10px;
+      padding: 15px 20px;
+      font-size: 1rem;
+      resize: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      box-shadow: inset 2px 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    #contact input::placeholder,
+    #contact textarea::placeholder {
+      color: #ddd;
+    }
+
+    #contact input:focus,
+    #contact textarea:focus {
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+      box-shadow: 0 0 10px #f5a623;
+      color: #260f00;
+      font-weight: 600;
+    }
+
+    #contact button {
+      background: #f5a623;
+      color: #260f00;
+      border: none;
+      border-radius: 40px;
+      padding: 14px 0;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(245, 166, 35, 0.7);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #contact button:hover {
+      background: #d48806;
+      box-shadow: 0 6px 16px rgba(212, 136, 6, 0.8);
+    }
+
+    /* Footer */
+    footer {
+      padding: 15px 30px;
+      background: rgba(26, 22, 68, 0.75);
+      color: #bbb;
+      text-align: center;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    /* Smooth reveal animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .fade-in.delay-1 {
+      animation-delay: 0.3s;
+    }
+    .fade-in.delay-2 {
+      animation-delay: 0.6s;
+    }
+    .fade-in.delay-3 {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 15px;
+      }
+
+      #home h1 {
+        font-size: 2.2rem;
+      }
+      #home p {
+        font-size: 1rem;
+      }
+
+      #about, #contact {
+        padding: 40px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 15px 20px;
+      }
+      nav ul {
+        gap: 10px;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      #projects .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      #skills .skills-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .skill {
+        min-width: auto;
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-label="Logo">SUDHANSHU KUMAR</div>
+    <nav role="navigation" aria-label="Primary Navigation">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" tabindex="-1" class="fade-in">
+      <h1>Hello, I’m SUDHANSHU KUMAR</h1>
+      <p>A passionate engineering student crafting digital experiences and solutions with code and creativity. Welcome to my interactive portfolio!</p>
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get In Touch</button>
+    </section>
+
+    <section id="about" tabindex="-1" class="fade-in delay-1" aria-label="About Me">
+      <h2>About Me</h2>
+      <p>
+        I am a final year engineering student specializing in software development and aspiring to build impactful web applications.
+        I enjoy coding, problem-solving, and continuously learning new technologies.
+        This portfolio showcases some of the projects I've worked on and my core skills.
+      </p>
+    </section>
+
+    <section id="skills" tabindex="-1" class="fade-in delay-2" aria-label="My Skills">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        <div class="skill" title="JavaScript">JavaScript</div>
+        <div class="skill" title="HTML5 & CSS3">HTML5 & CSS3</div>
+        <div class="skill" title="React.js">React.js</div>
+        <div class="skill" title="Java">Java</div>
+        <div class="skill" title="Git & GitHub">Git & GitHub</div>
+        <div class="skill" title="CPP">CPP</div>
+        <div class="skill" title="Problem Solving">System Design</div>
+      </div>
+    </section>
+
+    <section id="projects" tabindex="-1" class="fade-in delay-3" aria-label="My Projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card" tabindex="0" aria-label="Project: Calculator Web App">
+          <img src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Calculator app interface screenshot" class="project-image" />
+          <div class="project-content">
+            <h3>Calculator Web App</h3>
+            <p>A beautiful and interactive calculator app with modern UI and smooth animations. Built with HTML, CSS, and JavaScript.</p>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="View Calculator project on GitHub">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Open Calculator project live demo">Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" tabindex="0" aria-label="Project: Portfolio Website">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portfolio website screenshot" class="project-image" />
+          <div class="project-content">
+            <h3>Portfolio Website</h3>
+            <p>An interactive and visually appealing portfolio website to showcase skills, passions, and projects. Crafted with responsive design principles.</p>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="View Portfolio project on GitHub">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Open Portfolio project live demo">Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" tabindex="0" aria-label="Project: Task Manager App">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Task manager app interface screenshot" class="project-image" />
+          <div class="project-content">
+            <h3>Task Manager App</h3>
+            <p>A simple and efficient task management tool enabling users to organize, add, and complete tasks to boost productivity.</p>
+            <div class="project-links">
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="View Task Manager project on GitHub">GitHub</a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Open Task Manager project live demo">Live Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" tabindex="-1" class="fade-in" aria-label="Contact Me">
+      <h2>Contact Me</h2>
+      <form id="contact-form" aria-live="polite" aria-relevant="additions removals" novalidate>
+        <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" required aria-required="true" />
+        <input type="email" id="email" name="email" placeholder="Your Email" autocomplete="email" required aria-required="true" />
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
+        <button type="submit" aria-label="Send Message">Send Message</button>
+      </form>
+      <p id="form-feedback" role="alert" style="margin-top: 15px;"></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 YourName. All rights reserved.
+  </footer>
+
+  <script>
+    // Update nav active link on scroll
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    function changeActiveLink() {
+      let index = sections.length;
+      while(--index && window.scrollY + 90 < sections[index].offsetTop) {}
+      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks[index].classList.add('active');
+    }
+    changeActiveLink();
+    window.addEventListener('scroll', changeActiveLink);
+
+    // Simple contact form validation and feedback
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      feedback.style.color = '#f5a623';
+
+      if (!form.name.value.trim()) {
+        feedback.textContent = 'Please enter your name.';
+        form.name.focus();
+        return;
+      }
+      if (!form.email.value.trim()) {
+        feedback.textContent = 'Please enter your email.';
+        form.email.focus();
+        return;
+      }
+      if (!form.message.value.trim()) {
+        feedback.textContent = 'Please enter a message.';
+        form.message.focus();
+        return;
+      }
+
+      // Simulate sending message with timeout, no backend
+      feedback.textContent = 'Sending message...';
+      setTimeout(() => {
+        feedback.style.color = '#67e367';
+        feedback.textContent = 'Message sent successfully! Thank you.';
+        form.reset();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
+
